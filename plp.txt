@@ -1,0 +1,65 @@
+CREATE TABLE user_role(user_name VARCHAR2(20) PRIMARY KEY,password VARCHAR2(12),role_code VARCHAR2(10));
+
+ INSERT INTO user_role VALUES('&user_name','&password','&role_code');
+Enter value for user_name: USER001
+Enter value for password: 001user
+Enter value for role_code: USER
+
+/
+Enter value for user_name: AGE002
+Enter value for password: 002AGE
+Enter value for role_code: AGENT
+
+/
+Enter value for user_name: ADM003
+Enter value for password: 003ADM
+Enter value for role_code: ADMIN
+
+
+SQL> INSERT INTO user_role VALUES('&user_name','&password','&role_code');
+Enter value for user_name: USER002
+Enter value for password: 002user
+Enter value for role_code: USER1
+
+INSERT INTO account VALUES('&account_number','&insured_name','&insured_street','&insured_city','&insured_state','&insured_zip','&business_segment','&user_name');
+Enter value for account_number: 154521
+Enter value for insured_name: chandana
+Enter value for insured_street: knm street
+Enter value for insured_city: chittor
+Enter value for insured_state: Andra Pradesh
+Enter value for insured_zip: 51700
+Enter value for business_segment: BusinessAuto
+Enter value for user_name: USER001
+
+INSERT INTO account VALUES('&account_number','&insured_name','&insured_street','&insured_city','&insured_state','&insured_zip','&business_segment','&user_name');
+Enter value for account_number: 154578
+Enter value for insured_name: Murali
+Enter value for insured_street: gandhi street
+Enter value for insured_city: Chennai
+Enter value for insured_state: tamil Nadu
+Enter value for insured_zip: 65874
+Enter value for business_segment: Resturtant
+Enter value for user_name: USER002
+
+
+ INSERT INTO policy VALUES('&POLICY_NUMBER','&POLICY_PREMIUM','&ACCOUNT_NUMBER');
+Enter value for policy_number: 1000101
+Enter value for policy_premium: 1000
+Enter value for account_number: 154521
+
+ /
+Enter value for policy_number: 1000102
+Enter value for policy_premium: 1400
+Enter value for account_number: 154578
+
+CREATE TABLE claim(claim_number NUMBER(10) PRIMARY KEY,claim_reason VARCHAR2(30),accident_location_street VARCHAR2(40),accident_city VARCHAR2(15),accident_state VARCHAR2(15),accident_zip NUMBER(5),claim_type VARCHAR2(30),policy_number NUMBER(10) REFERENCES policy(policy_number));
+
+INSERT INTO claim(claim_number,claim_reason,accident_location_street,accident_city,accident_state,accident_zip,claim_type,policy_number) VALUES('1001',' engine failure','Tnagar','Chennai','tamil Nadu','65471','fire accident','1000101');
+
+ INSERT INTO claim(claim_number,claim_reason,accident_location_street,accident_city,accident_state,accident_zip,claim_type,policy_number) VALUES('1002',' NATURAL disaster','PKV NAGAR','chittor','Andhra Pradesh','65854','earthquake','1000102');
+
+CREATE TABLE policy_details(policy_number NUMBER(10) REFERENCES policy(policy_number),question_id VARCHAR2(15),answer VARCHAR2(30));
+
+INSERT INTO policy_details(policy_number,question_id,answer) VALUES ('1000101','QNS1','ANS1');
+
+ INSERT INTO policy_details(policy_number,question_id,answer) VALUES ('1000102','QNS2','ANS2');
